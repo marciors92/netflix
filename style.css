@@ -1,452 +1,193 @@
 /* ========================================
    RESET E CONFIGURAÇÕES GLOBAIS
    ======================================== */
-
 * {
-    /* Remove margens padrão dos navegadores */
     margin: 0;
-    /* Remove padding padrão dos navegadores */
     padding: 0;
-    /* Faz border fazer parte da WIDTH total do elemento */
     box-sizing: border-box;
 }
 
-html {
-    /* Define tamanho base para cálculos de rem, facilitando responsividade */
-    font-size: 16px;
+:root {
+    --netflix-red: #E50914;
+    --dark-bg: #141414;
+    --light-bg: #f5f5f5; /* Cor para o modo claro */
+    --text-white: #ffffff;
+    --text-dark: #141414; /* Texto para o modo claro */
+    --transition-speed: 0.3s ease;
 }
 
 body {
-    /* Fundo escuro, característica visual da Netflix */
-    background-color: #141414;
-    /* Cor de texto principal em branco */
-    color: #ffffff;
-    /* Fonte clara e legível para interfaces modernas */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Espaço entre linhas de texto para melhor legibilidade */
-    line-height: 1.6;
-    /* Suaviza transição de cores ao mudar de tema */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 /* ========================================
-   BOTÃO DE TOGGLE TEMA - BASE MOBILE
+   CONFIGURAÇÕES DE TEMA (LIGHT MODE)
    ======================================== */
+body.light-mode {
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+}
+
+body.light-mode #title-profiles {
+    color: var(--text-dark);
+}
+
+body.light-mode figcaption {
+    color: #555;
+}
+
+body.light-mode .profile-link:hover figcaption {
+    color: var(--text-dark);
+}
+
+body.light-mode .manage-button {
+    border-color: #999;
+    color: #666;
+}
+
+body.light-mode .manage-button:hover {
+    border-color: var(--text-dark);
+    color: var(--text-dark);
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 4%;
+    width: 100%;
+}
+
+.logo img {
+    height: 30px;
+}
 
 #theme-toggle {
-    /* Posição no header usando flex */
-    position: absolute;
-    left: 1rem;
-    
-    /* Remover estilo padrão de botão */
     background: none;
     border: none;
-    
-    /* Ícone maior e visível */
     font-size: 1.5rem;
-    
-    /* Cursor de clique */
     cursor: pointer;
-    
-    /* Transição suave do ícone */
-    transition: transform 0.3s ease, filter 0.3s ease;
-    
-    /* Padding para aumentar área de clique */
-    padding: 0.5rem;
-    
-    /* Acessibilidade: remover outline padrão mas manter focus visível */
-    outline: none;
+    color: inherit;
+    transition: transform 0.2s;
 }
 
-#theme-toggle:hover {
-    /* Efeito visual ao passar o mouse */
-    transform: scale(1.1);
-    /* Adiciona filtro para melhor contraste */
-    filter: brightness(1.2);
-}
-
-.theme-icon {
-    /* Ícone com transição suave */
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-#theme-toggle:active .theme-icon {
-    /* Rotação ao clique para feedback visual */
-    transform: rotate(20deg);
+#theme-toggle:active {
+    transform: scale(0.9);
 }
 
 /* ========================================
-   LIGHT MODE - ESTILOS ALTERNATIVOS
+   CONTEÚDO PRINCIPAL - CENTRALIZAÇÃO TOTAL
    ======================================== */
-
-/* Light mode: fundo claro e texto escuro */
-body.light-mode {
-    /* Fundo branco/claro */
-    background-color: #f5f5f5;
-    /* Texto escuro para contraste */
-    color: #1a1a1a;
-}
-
-/* Header em light mode */
-body.light-mode header {
-    /* Gradiente em tons claros */
-    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-}
-
-/* Imagens em light mode com borda mais visível */
-body.light-mode section img {
-    /* Fundo mais claro para as imagens */
-    background-color: #e0e0e0;
-    /* Sombra mais suave em light mode */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Hover da imagem em light mode */
-body.light-mode section a:hover img {
-    /* Sombra com cor Netflix em light mode */
-    box-shadow: 0 8px 30px rgba(229, 9, 20, 0.25);
-}
-
-/* Figcaption em light mode */
-body.light-mode figcaption {
-    /* Texto mais escuro em light mode */
-    color: #333333;
-}
-
-/* ========================================
-   HEADER - BASE MOBILE
-   ======================================== */
-
-header {
-    /* Ativa flexbox para centralizar conteúdo */
+.main-content {
+    flex: 1;
     display: flex;
-    /* Centraliza horizontalmente */
-    justify-content: center;
-    /* Centraliza verticalmente */
-    align-items: center;
-    /* Altura menor para mobile economizar espaço visível */
-    min-height: 18vh;
-    /* Gradiente diagonal para efeito visual sofisticado */
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-    /* Espaço interno reduzido para mobile */
-    padding: 1rem;
-    /* Position relative para permitir botão absolute */
-    position: relative;
-    /* Transição suave do gradiente */
-    transition: background 0.3s ease;
-}
-
-header h1 {
-    /* Título compacto para mobile - cabe melhor na tela */
-    font-size: 1.5rem;
-    /* Peso forte para enfatizar o texto */
-    font-weight: 700;
-    /* Aproxima as letras para um visual mais compacto */
-    letter-spacing: -1px;
-    /* Alinha texto no centro */
-    text-align: center;
-}
-
-/* ========================================
-   MAIN CONTENT - BASE MOBILE
-   ======================================== */
-
-main {
-    /* Espaço interno reduzido para mobile */
-    padding: 1.5rem 1rem;
-    /* Ativa flexbox para layout flexível */
-    display: flex;
-    /* Centraliza o conteúdo horizontalmente */
-    justify-content: center;
-}
-
-section[aria-label="Seleção de perfis"] {
-    /* Usa toda a largura disponível */
-    width: 100%;
-    /* Limita a largura máxima para evitar que fique muito esticado em telas grandes */
-    max-width: 1200px;
-}
-
-/* ========================================
-   LISTA DE PERFIS - BASE MOBILE
-   ======================================== */
-
-/* Remove os marcadores da lista não-ordenada */
-section ul {
-    list-style: none;
-    /* Usa flexbox para comportamento horizontal */
-    display: flex;
-    /* Permite quebra de linha */
-    flex-wrap: wrap;
-    /* Centraliza na tela */
-    justify-content: center;
-    /* Reset padrão */
-    padding: 0;
-    margin: 0;
-}
-
-/* Item da lista não-ordenada contendo a ordenada */
-section ul > li {
-    /* Expande para ocupar espaço disponível */
-    flex: 1 1 100%;
-    /* Reset padrão */
-    padding: 0;
-    margin: 0;
-}
-
-/* Remove números da lista ordenada e aplica flexbox */
-section ol {
-    /* Remove os marcadores numerados */
-    list-style: none;
-    /* Usa flexbox para alinhamento horizontal */
-    display: flex;
-    /* Permite quebra de linha em telas pequenas */
-    flex-wrap: wrap;
-    /* Centraliza itens horizontalmente */
-    justify-content: center;
-    /* Centraliza itens verticalmente */
-    align-items: flex-start;
-    /* Espaço entre itens para mobile */
-    gap: 1rem;
-    /* Reset padrão */
-    padding: 0;
-    margin: 0;
-}
-
-section ol > li {
-    /* Tamanho flexível mas com máximo */
-    flex: 0 0 auto;
-    /* Limita tamanho máximo do perfil */
-    max-width: 130px;
-    /* Remove marcador de lista */
-    list-style: none;
-}
-
-/* ========================================
-   LINKS E FIGURAS
-   ======================================== */
-
-section a {
-    /* Faz o link ocupar todo o espaço disponível */
-    display: block;
-    /* Remove a decoração padrão de links (sublinha) */
-    text-decoration: none;
-    /* Muda o cursor para indicar clicabilidade */
-    cursor: pointer;
-    /* Suaviza a transição de transformações (usada em hover) */
-    transition: transform 0.3s ease;
-}
-
-section a:hover {
-    /* Aumenta o tamanho para 108% ao passar o mouse (zoom sutil) */
-    transform: scale(1.08);
-}
-
-section figure {
-    /* Remove margin padrão da tag figure */
-    margin: 0;
-    /* Usa flexbox para organizar verticamente */
-    display: flex;
-    /* Organiza items em coluna (verticalmente) */
     flex-direction: column;
-    /* Espaço entre imagem e texto */
-    gap: 1.5rem;
-    /* Centraliza items horizontalmente */
     align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-section img {
-    /* Tamanho compacto para mobile - cabe bem em tela pequena */
-    width: 110px;
-    /* Altura fixa para criar quadrado perfeito */
-    height: 110px;
-    /* Faz a imagem preencher o espaço sem distorcer */
+#title-profiles {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.profile-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 0;
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+.profile-item {
+    width: 150px;
+}
+
+.profile-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.profile-link:hover {
+    transform: scale(1.05);
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
     object-fit: cover;
-    /* Cantos levemente arredondados */
-    border-radius: 8px;
-    /* Cor de fundo caso a imagem não carregue */
-    background-color: #2a2a2a;
-    /* Sombra suave ao redor da imagem */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-    /* Suaviza transições de sombra e bordas */
-    transition: box-shadow 0.3s ease, border-radius 0.3s ease;
+    margin-bottom: 15px;
 }
 
-section a:hover img {
-    /* Sombra mais intensa com cor branca ao passar o mouse */
-    box-shadow: 0 8px 35px rgba(255, 255, 255, 0.6);
-    /* Aumenta o arredondamento das bordas no hover */
-    border-radius: 12px;
+.profile-link:hover .profile-img {
+    outline: 3px solid var(--text-white);
+}
+
+/* Ajuste de borda no hover para o modo claro */
+body.light-mode .profile-link:hover .profile-img {
+    outline: 3px solid var(--text-dark);
 }
 
 figcaption {
-    /* Tamanho pequeno para mobile */
-    font-size: 0.85rem;
-    /* Peso moderado para destaque */
-    font-weight: 600;
-    /* Centraliza o nome do perfil */
+    font-size: 1.1rem;
+    color: grey;
     text-align: center;
-    /* Cor branca para contraste com background escuro */
-    color: #ffffff;
+    width: 100%;
+    transition: color 0.2s;
+}
+
+.profile-link:hover figcaption {
+    color: var(--text-white);
 }
 
 /* ========================================
-   RESPONSIVO - TABLET PEQUENO (481px+)
-   Etapa 1: Aumenta espaços e tamanho de elementos
+   BOTÃO GERENCIAR
    ======================================== */
-
-@media (min-width: 481px) {
-
-    /* Botão maior em tablets */
-    #theme-toggle {
-        font-size: 1.8rem;
-        left: 1.5rem;
-        padding: 0.75rem;
-    }
-
-    /* Aumenta título gradualmente para tablets */
-    header h1 {
-        font-size: 2rem;
-    }
-
-    /* Aumenta padding no header */
-    header {
-        padding: 1.5rem;
-        min-height: 22vh;
-    }
-
-    /* Grid com 3 colunas em tablet pequeno */
-    section ol {
-        /* Aumenta espaço entre itens */
-        gap: 1.5rem;
-    }
-
-    section ol > li {
-        /* Ajusta tamanho máximo para tablets */
-        max-width: 160px;
-    }
-
-    /* Imagens maiores para tablet */
-    section img {
-        width: 140px;
-        height: 140px;
-    }
-
-    /* Aumenta texto do nome */
-    figcaption {
-        font-size: 0.95rem;
-    }
-
-    /* Aumenta padding em main */
-    main {
-        padding: 2rem 1.5rem;
-    }
+.manage-profiles-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
-/* ========================================
-   RESPONSIVO - TABLET GRANDE (769px+)
-   Etapa 2: Layout intermediário com mais espaço
-   ======================================== */
-
-@media (min-width: 769px) {
-
-    /* Botão em posição mais visível em tablets grandes */
-    #theme-toggle {
-        font-size: 2rem;
-        left: 2rem;
-        padding: 0.75rem;
-    }
-
-    /* Aumenta ainda mais o título */
-    header h1 {
-        font-size: 2.8rem;
-    }
-
-    /* Header mais generoso em tablets */
-    header {
-        padding: 2rem;
-        min-height: 26vh;
-    }
-
-    /* Grid com 4 colunas em tablet grande */
-    section ol {
-        /* Espaço confortável entre itens */
-        gap: 2rem;
-    }
-
-    /* Imagens ainda maiores */
-    section img {
-        width: 160px;
-        height: 160px;
-    }
-
-    /* Aumenta figcaption */
-    figcaption {
-        font-size: 1.05rem;
-    }
-
-    /* Padding amplo em main */
-    main {
-        padding: 3rem 2rem;
-    }
-
-    /* Aumenta max-width do perfil */
-    section ol > li {
-        max-width: 180px;
-    }
+.manage-button {
+    text-decoration: none;
+    color: grey;
+    border: 1px solid grey;
+    padding: 0.6rem 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
 }
 
-/* ========================================
-   RESPONSIVO - DESKTOP PEQUENO (1025px+)
-   Etapa 3: Layout desktop com espaçamento generoso
-   ======================================== */
+.manage-button:hover {
+    color: var(--text-white);
+    border-color: var(--text-white);
+}
 
-@media (min-width: 1025px) {
-
-    /* Botão em desktop */
-    #theme-toggle {
-        font-size: 2rem;
-        right: 2rem;
-        left: auto;
-        padding: 1rem;
-    }
-
-    /* Título grande no desktop */
-    header h1 {
-        font-size: 3.5rem;
-    }
-
-    /* Header com altura impressionante */
-    header {
-        padding: 2.5rem;
-        min-height: 30vh;
-    }
-
-    /* Grid adaptativo no desktop - até 5 itens */
-    section ol {
-        /* Espaço generoso */
-        gap: 3rem;
-    }
-
-    /* Imagens grandes no desktop */
-    section img {
-        width: 200px;
-        height: 200px;
-    }
-
-    /* Figcaption maior */
-    figcaption {
-        font-size: 1.25rem;
-    }
-
-    /* Padding robusto */
-    main {
-        padding: 4rem 2rem;
-    }
-
-    /* Max-width confortável */
-    section ol > li {
-        max-width: 250px;
-    }
+.footer-minimal {
+    padding: 30px;
+    text-align: center;
+    color: #555;
+    font-size: 0.8rem;
 }
