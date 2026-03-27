@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <!-- Botão de toggle para alternar entre dark e light mode -->
+        <button id="theme-toggle" aria-label="Alternar entre modo claro e escuro" title="Alternar tema">
+            <span class="theme-icon">🌙</span>
+        </button>
+        <h1>Quem está assistindo?</h1>
+    </header>
+
+    <main>
+        <section aria-label="Seleção de perfis">
+            <!-- Lista não-ordenada (container principal) -->
+            <ul>
+                <li>
+                    <!-- Lista ordenada (sequência de perfis) -->
+                    <ol>
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img src="/assets/perfil.01.jpg" alt="Hagrid na entrada do Beco Diagonal">
+                                    <figcaption>Estêvão</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img src="/assets/perfil.02.jpg" alt="Dumbledore aplaudindo excentricamente">
+                                    <figcaption>Violeta</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img src="/assets/perfil.03.jpg" alt="Harry Potter com expressão facial de desdém">
+                                    <figcaption>Cristóvão</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img src="/assets/perfil.04.jpg" alt="Dumbledore duelando no Ministério da Magia">
+                                    <figcaption>Joana</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Script para controlar tema dark/light mode -->
+    <script src="script.js"></script>
+</body>
+
+</html>
