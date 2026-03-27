@@ -4,79 +4,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Clone</title>
+    <title>Netflix Clone - Catálogo</title>
     <link rel="stylesheet" href="catalogo.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #141414;
+            --light-bg: #f5f5f5;
+            --text-white: #e5e5e5;
+            --text-dark: #141414;
+            --transition-speed: 0.3s ease;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* --- CONFIGURAÇÕES LIGHT MODE --- */
+        body.light-mode {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+        }
+
+        body.light-mode .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        body.light-mode .nav-links li a, 
+        body.light-mode .kids-link, 
+        body.light-mode .icon {
+            color: #333;
+        }
+
+        body.light-mode .active-profile-name {
+            color: var(--text-dark);
+        }
+
+        body.light-mode footer {
+            background-color: #eee;
+            color: #666;
+        }
+
+        body.light-mode .footer-name {
+            color: #333;
+        }
+
+        /* --- ESTILOS DE LAYOUT --- */
+        .active-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 40px 4%;
+            margin-bottom: 20px;
+        }
+
+        .active-profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            border: 2px solid white;
+            object-fit: cover;
+        }
+
+        .active-profile-name {
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+
+        footer {
+            padding: 50px 20px;
+            background-color: #141414;
+            border-top: 2px solid #333;
+            color: #808080;
+            text-align: center;
+        }
+
+        .footer-content { max-width: 1000px; margin: 0 auto; }
+        .footer-name { font-size: 1.2rem; margin-bottom: 15px; color: #fff; }
+        .footer-links { list-style: none; padding: 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .footer-links li a { color: inherit; text-decoration: none; font-size: 0.9rem; }
+    </style>
 </head>
 
 <body>
-    <!-- Navbar -->
     <header class="navbar" id="navbar">
         <div class="navbar-left">
-            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-                alt="Netflix">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
             <nav>
                 <ul class="nav-links">
-                    <li><a href="https://www.alura.com.br/" class="active">Início</a></li>
-                    <li><a href="https://www.alura.com.br/">Séries</a></li>
-                    <li><a href="https://www.alura.com.br/">Filmes</a></li>
-                    <li><a href="https://www.alura.com.br/">Jogos</a></li>
-                    <li><a href="https://www.alura.com.br/">Bombando</a></li>
-                    <li><a href="https://www.alura.com.br/">Minha lista</a></li>
-                    <li><a href="https://www.alura.com.br/">Melhores da Alura</a></li>
+                    <li><a href="#" class="active">Início</a></li>
+                    <li><a href="#">Séries</a></li>
+                    <li><a href="#">Filmes</a></li>
+                    <li><a href="#">Jogos</a></li>
+                    <li><a href="#">Bombando</a></li>
+                    <li><a href="#">Minha lista</a></li>
                 </ul>
             </nav>
         </div>
         <div class="navbar-right">
             <i class="fas fa-search icon"></i>
-            <a href="../index.html" class="kids-link">Seu nome</a>
+            <a href="../index.html" class="kids-link" style="text-decoration: none; color: inherit; margin-right: 15px;">Seu nome</a>
             <div class="nav-notification">
                 <i class="fas fa-bell icon"></i>
                 <span class="notification-badge">42</span>
             </div>
-            <a href="../index.html" class="profile-menu" style="text-decoration: none; color: inherit;">
-                <img class="profile-icon" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-                    alt="Profile">
+            <a href="../index.html" class="profile-menu">
+                <img class="profile-icon" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="Profile">
                 <i class="fas fa-caret-down icon" style="font-size: 14px; margin-left: 5px;"></i>
             </a>
         </div>
     </header>
 
-    <!-- Sliders Container -->
     <main class="sliders-container" id="main-content">
-        <!-- Perfil ativo -->
         <section class="active-profile">
-            <img class="active-profile-img" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="Perfil ativo">
-            <p class="active-profile-name">Visitante</p>
+            <img class="active-profile-img" src="" alt="Perfil ativo">
+            <p class="active-profile-name">Carregando...</p>
         </section>
-
-        <!-- Javascript will inject the rows here -->
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <a href="https://www.alura.com.br/" target="_blank">
-                <p>Imersão Alura AI</p>
-            </a>
+            <p class="footer-name">Desenvolvido por <strong>Márcio Rodrigues</strong></p>
             <ul class="footer-links">
-                <li><a href="https://www.alura.com.br/" target="_blank">Perguntas frequentes</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Centro de ajuda</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Conta</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Imprensa</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Relações com investidores</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Carreiras</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Formas de assistir</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Termos de uso</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Privacidade</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Preferências de cookies</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Informações corporativas</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Entre em contato</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Teste de velocidade</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Avisos legais</a></li>
-                <li><a href="https://www.alura.com.br/" target="_blank">Só na Netflix</a></li>
+                <li><a href="https://www.linkedin.com/in/marciofrontend/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                <li><a href="https://github.com/marciors92" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                <li><a href="https://marcio-engineer-fed.vercel.app/" target="_blank"><i class="fas fa-briefcase"></i> Portfólio</a></li>
             </ul>
+            <p style="margin-top: 20px; font-size: 0.7rem;">&copy; 2026 Netflix Clone - Imersão Front-End & IA</p>
         </div>
     </footer>
 
