@@ -125,6 +125,34 @@ function watchSystemTheme() {
 }
 
 // ========================================
+// CONFIGURAÇÃO DE PERFIL ATIVO
+// ========================================
+
+/**
+ * Adiciona listeners aos links de perfil em index.html
+ * e salva nome + imagem no localStorage antes de navegar.
+ */
+function setupPerfilAtivo() {
+    const perfilLinks = document.querySelectorAll('main section ul ol li a');
+
+    perfilLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const figure = link.querySelector('figure');
+            if (!figure) return;
+
+            const img = figure.querySelector('img');
+            const caption = figure.querySelector('figcaption');
+
+            if (img && caption) {
+                localStorage.setItem('perfilAtivoNome', caption.textContent.trim());
+                localStorage.setItem('perfilAtivoImagem', img.src);
+            }
+        });
+    });
+}
+
+
+// ========================================
 // EXECUTAR AO CARREGAR A PÁGINA
 // ========================================
 
@@ -133,9 +161,11 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         initializeTheme();
         watchSystemTheme();
+        setupPerfilAtivo();
     });
 } else {
     // DOM já está pronto (se script for carregado no final do body)
     initializeTheme();
     watchSystemTheme();
+    setupPerfilAtivo();
 }
